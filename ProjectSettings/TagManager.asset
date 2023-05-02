@@ -10,13 +10,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Background
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemies
+  - Projectiles
+  - Platforms
   - 
   - 
   - 
@@ -51,4 +51,10 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3297682327
+    locked: 0
+  - name: Starlings
+    uniqueID: 1002738111
+    locked: 0
+  - name: Projectiles
+    uniqueID: 1493461563
     locked: 0
