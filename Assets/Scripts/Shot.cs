@@ -14,6 +14,9 @@ public class Shot : MonoBehaviour
     float xSpd;
 
     [SerializeField]
+    ParticleSystem stars;
+
+    [SerializeField]
     int pointsPerKill = 50;
 
     void Start()
@@ -28,6 +31,11 @@ public class Shot : MonoBehaviour
         bodied.velocity = new Vector2(xSpd, 0f);
     }
 
+    void Stars()
+    {
+        stars.Play();
+    }
+
     void FlipSprite()
     {
         bool HorSpeed = Mathf.Abs(bodied.velocity.x) > Mathf.Epsilon;
@@ -40,7 +48,7 @@ public class Shot : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag == "Starling")
         {
             Destroy(other.gameObject);
             FindObjectOfType<GameSession>().Scoring(pointsPerKill);

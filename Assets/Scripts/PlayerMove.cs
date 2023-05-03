@@ -94,7 +94,7 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void OnFire(InputValue value)
+    public void OnFire(InputValue value)
     {
         if (value.isPressed)
         {
