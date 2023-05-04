@@ -18,8 +18,17 @@ public class GameSession : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI score;
 
+    [SerializeField]
+    TextMeshProUGUI starlings;
+
+    public int starNum;
+
+    Shot shot;
+
     void Awake()
     {
+        starNum = GameObject.FindGameObjectsWithTag("Starling").Length;
+        shot = FindObjectOfType<Shot>();
         int numSesh = FindObjectsOfType<GameSession>().Length;
         if (numSesh > 1)
         {
@@ -33,14 +42,26 @@ public class GameSession : MonoBehaviour
 
     void Start()
     {
-        living.text = lives.ToString();
-        score.text = scored.ToString();
+        living.text = lives.ToString("Lives  0");
+        score.text = scored.ToString("Score  00000000");
+        starlings.text = starNum.ToString("Starlings Remaining  00");
     }
 
     public void Scoring(int addedPoints)
     {
         scored += addedPoints;
-        score.text = scored.ToString();
+        score.text = scored.ToString("Score  00000000");
+    }
+
+    public void Stars()
+    {
+        GetStarNum();
+        starlings.text = starNum.ToString("Starlings Remaining  00");
+    }
+
+    int GetStarNum()
+    {
+        return starNum;
     }
 
     public void PlayDeaths()

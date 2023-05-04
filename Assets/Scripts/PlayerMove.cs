@@ -21,6 +21,9 @@ public class PlayerMove : MonoBehaviour
     GameObject projectile;
 
     [SerializeField]
+    GameObject chargeProj;
+
+    [SerializeField]
     Transform impact;
 
     Vector2 moveInput;
@@ -37,6 +40,8 @@ public class PlayerMove : MonoBehaviour
 
     // Not using this for anything
     float startGravScale;
+
+    ChargeShot cShot;
 
     void Start()
     {
@@ -99,6 +104,22 @@ public class PlayerMove : MonoBehaviour
         if (value.isPressed)
         {
             Instantiate(projectile, impact.position, transform.rotation);
+            anim.SetBool("isFiring", true);
+        }
+        if (
+            anim.GetBool("isFiring") == true &&
+            anim.GetBool("isRunning") == true
+        )
+        {
+            anim.SetBool("isFiring", false);
+        }
+    }
+
+    void OnChargeFire(InputValue value)
+    {
+        if (value.isPressed && cShot.currentTime == cShot.chargeTimer)
+        {
+            Instantiate(chargeProj, impact.position, transform.rotation);
             anim.SetBool("isFiring", true);
         }
         if (

@@ -19,6 +19,12 @@ public class Shot : MonoBehaviour
     [SerializeField]
     int pointsPerKill = 50;
 
+    GameSession session;
+
+    void Awake() {
+        session = FindObjectOfType<GameSession>();
+    }
+
     void Start()
     {
         bodied = GetComponent<Rigidbody2D>();
@@ -36,22 +42,13 @@ public class Shot : MonoBehaviour
         stars.Play();
     }
 
-    void FlipSprite()
-    {
-        bool HorSpeed = Mathf.Abs(bodied.velocity.x) > Mathf.Epsilon;
-        if (HorSpeed)
-        {
-            transform.localScale =
-                new Vector2(-(Mathf.Sign(bodied.velocity.x)), 1f);
-        }
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Starling")
         {
             Destroy(other.gameObject);
-            FindObjectOfType<GameSession>().Scoring(pointsPerKill);
+            session.Scoring(pointsPerKill);
+            session.starNum--;
         }
         Destroy (gameObject);
     }

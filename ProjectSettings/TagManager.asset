@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Background
   - Platforms
+  - Starling
+  - Shot
   layers:
   - Default
   - TransparentFX

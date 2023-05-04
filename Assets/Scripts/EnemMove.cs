@@ -25,7 +25,7 @@ public class EnemMove : MonoBehaviour
         FlipFace();
     }
 
-        void FlipFace()
+    void FlipFace()
     {
         bool HorSpeed = Mathf.Abs(bodied.velocity.x) > Mathf.Epsilon;
         if (HorSpeed)
@@ -34,5 +34,4 @@ public class EnemMove : MonoBehaviour
                 new Vector2(-(Mathf.Sign(bodied.velocity.x)), 1f);
         }
     }
-
 }
