@@ -22,13 +22,19 @@ public class ChargeShot : MonoBehaviour
     [SerializeField]
     public float chargeTimer = 3f;
 
+    [SerializeField]
+    float lifetime = 5f;
+
     GameSession session;
+
+    Timer timer;
 
     public float currentTime = 0f;
 
     void Awake()
     {
         session = FindObjectOfType<GameSession>();
+        timer = FindObjectOfType<Timer>();
     }
 
     void Start()
@@ -41,7 +47,16 @@ public class ChargeShot : MonoBehaviour
     void Update()
     {
         bodied.velocity = new Vector2(xSpd, 0f);
-        currentTime += .001f;
+        UpdateTime();
+        FlipSprite();
+    }
+
+    void UpdateTime()
+    {
+        while (currentTime < chargeTimer)
+        {
+            currentTime += Time.deltaTime / 3;
+        }
     }
 
     void Stars()
@@ -62,6 +77,24 @@ public class ChargeShot : MonoBehaviour
         if (killed >= 3)
         {
             Destroy (gameObject);
+        }
+    }
+
+    void KillIt()
+    {
+        if (timer.timerVal == lifetime)
+        {
+            Destroy (gameObject);
+        }
+    }
+
+    void FlipSprite()
+    {
+        bool HorSpeed = Mathf.Abs(bodied.velocity.x) > Mathf.Epsilon;
+        if (HorSpeed)
+        {
+            stars.transform.localScale =
+                new Vector2((Mathf.Sign(bodied.velocity.x)), 1f);
         }
     }
 

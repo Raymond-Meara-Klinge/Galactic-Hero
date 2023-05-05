@@ -12,9 +12,6 @@ public class PlayerMove : MonoBehaviour
     float jumpSpd = 12f;
 
     [SerializeField]
-    float climbSpd = 10f;
-
-    [SerializeField]
     Vector2 boing = new Vector2(0f, 0f);
 
     [SerializeField]
@@ -38,17 +35,14 @@ public class PlayerMove : MonoBehaviour
 
     BoxCollider2D feet;
 
-    // Not using this for anything
-    float startGravScale;
-
     ChargeShot cShot;
 
     void Start()
     {
+        cShot = FindObjectOfType<ChargeShot>();
         bodied = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         myCollider = GetComponent<CapsuleCollider2D>();
-        startGravScale = bodied.gravityScale;
         feet = GetComponent<BoxCollider2D>();
     }
 
@@ -84,18 +78,18 @@ public class PlayerMove : MonoBehaviour
 
         if (!feet.IsTouchingLayers(LayerMask.GetMask("Platforms")))
         {
-            anim.SetBool("isJumping", false);
-            return;
+            anim.SetBool("isJumping", true);
         }
-
+        else{
+            anim.SetBool("isJumping", false);
+        }
+        
         if (
             value.isPressed &&
             feet.IsTouchingLayers(LayerMask.GetMask("Platforms"))
         )
         {
             bodied.velocity += new Vector2(0f, jumpSpd);
-            anim.SetBool("isJumping", true);
-            anim.SetBool("isRunning", false);
         }
     }
 
@@ -117,10 +111,11 @@ public class PlayerMove : MonoBehaviour
 
     void OnChargeFire(InputValue value)
     {
-        if (value.isPressed && cShot.currentTime == cShot.chargeTimer)
+        if (value.isPressed)
         {
             Instantiate(chargeProj, impact.position, transform.rotation);
             anim.SetBool("isFiring", true);
+            cShot.currentTime = 0;
         }
         if (
             anim.GetBool("isFiring") == true &&
@@ -137,7 +132,7 @@ public class PlayerMove : MonoBehaviour
         Vector2 playVelocity =
             new Vector2(moveInput.x * runSpeed, bodied.velocity.y);
         bodied.velocity = playVelocity;
-        if (moved)
+        if (moved && feet.IsTouchingLayers(LayerMask.GetMask("Platforms")))
         {
             anim.SetBool("isRunning", moved);
             anim.SetBool("isFiring", false);
@@ -148,23 +143,18 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void Cling()
-    {
-        while (myCollider.IsTouchingLayers(LayerMask.GetMask("Wall")))
-        {
-            anim.SetBool("isClinging", true);
-        }
-    }
-
     void Die()
     {
-        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Enem", "Hazards")))
+        if (
+            myCollider
+                .IsTouchingLayers(LayerMask.GetMask("Starlings", "Hazards"))
+        )
         {
             isLiving = false;
             anim.SetTrigger("Dead");
             anim.SetBool("isRunning", false);
             anim.SetBool("isFiring", false);
-            anim.SetBool("isClinging", false);
+            anim.SetBool("isJumping", false);
             Object.Destroy (myCollider);
             bodied.velocity = boing;
             FindObjectOfType<GameSession>().PlayDeaths();

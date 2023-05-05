@@ -21,7 +21,8 @@ public class Shot : MonoBehaviour
 
     GameSession session;
 
-    void Awake() {
+    void Awake()
+    {
         session = FindObjectOfType<GameSession>();
     }
 
@@ -35,6 +36,7 @@ public class Shot : MonoBehaviour
     void Update()
     {
         bodied.velocity = new Vector2(xSpd, 0f);
+        FlipSprite();
     }
 
     void Stars()
@@ -47,7 +49,7 @@ public class Shot : MonoBehaviour
         if (other.tag == "Starling")
         {
             Destroy(other.gameObject);
-            session.Scoring(pointsPerKill);
+            session.Scoring (pointsPerKill);
             session.starNum--;
         }
         Destroy (gameObject);
@@ -56,5 +58,15 @@ public class Shot : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         Destroy (gameObject);
+    }
+
+    void FlipSprite()
+    {
+        bool HorSpeed = Mathf.Abs(bodied.velocity.x) > Mathf.Epsilon;
+        if (HorSpeed)
+        {
+            stars.transform.localScale =
+                new Vector2((Mathf.Sign(bodied.velocity.x)), 1f);
+        }
     }
 }
