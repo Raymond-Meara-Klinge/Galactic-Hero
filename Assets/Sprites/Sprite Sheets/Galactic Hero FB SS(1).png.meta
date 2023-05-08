@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a17d3abaf9fdc824aa9f72f6ac7fb249
+guid: 93b1ac4bd56886d4dafbe8b309e22479
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,17 +43,17 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 31
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -141,24 +141,141 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline:
-    - - {x: 0, y: -3}
-      - {x: -15, y: -1}
-      - {x: -15, y: 2}
-      - {x: 0, y: 5}
-      - {x: 15, y: 2}
-      - {x: 15, y: -1}
+    sprites:
+    - serializedVersion: 2
+      name: Galactic Hero FB SS(1)_0
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -138, y: -311}
+        - {x: -126, y: -134}
+        - {x: -96, y: 29}
+        - {x: 72, y: 319}
+        - {x: 59, y: 147}
+        - {x: 32, y: 23}
+        - {x: -126, y: -316}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d1c1d5738168e34d96c7edfd777d4d1
+      internalID: -1902763479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Galactic Hero FB SS(1)_1
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd33a7f1a1fe6540ad897bc3f69d95c
+      internalID: 1848234457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Galactic Hero FB SS(1)_2
+      rect:
+        serializedVersion: 2
+        x: 1620
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b184a06c6e8d4c4fab8cfc764fb9fea
+      internalID: 284915019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Galactic Hero FB SS(1)_3
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 1575
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -250, y: -40}
+        - {x: -336, y: 9}
+        - {x: -251, y: 69}
+        - {x: 237, y: 67}
+        - {x: 320, y: 17}
+        - {x: 253, y: -35}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d4659d6204b8b44eb359284fb829c1d
+      internalID: 2039591971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Galactic Hero FB SS(1)_4
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 1575
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c99fb6be2ba7704fa51df5c2c274eb7
+      internalID: 115180161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Galactic Hero FB SS(1)_3: 2039591971
+      Galactic Hero FB SS(1)_2: 284915019
+      Galactic Hero FB SS(1)_4: 115180161
+      Galactic Hero FB SS(1)_0: -1902763479
+      Galactic Hero FB SS(1)_1: 1848234457
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

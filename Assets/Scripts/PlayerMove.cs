@@ -76,14 +76,11 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        if (!feet.IsTouchingLayers(LayerMask.GetMask("Platforms")))
+        while (!feet.IsTouchingLayers(LayerMask.GetMask("Platforms")))
         {
             anim.SetBool("isJumping", true);
         }
-        else{
-            anim.SetBool("isJumping", false);
-        }
-        
+
         if (
             value.isPressed &&
             feet.IsTouchingLayers(LayerMask.GetMask("Platforms"))

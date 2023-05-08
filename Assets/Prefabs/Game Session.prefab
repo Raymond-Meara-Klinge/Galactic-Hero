@@ -644,7 +644,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Menu
+  m_text: Lvl  Select
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c129082516c7ab34a988ff057b3efaaf, type: 2}
   m_sharedMaterial: {fileID: -2391755834075760275, guid: c129082516c7ab34a988ff057b3efaaf, type: 2}
@@ -764,6 +764,7 @@ MonoBehaviour:
   living: {fileID: 2097341957}
   score: {fileID: 82945044}
   starlings: {fileID: 3388511677500709264}
+  starNum: 0
 --- !u!1 &8378004045756484197
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,7 +778,7 @@ GameObject:
   - component: {fileID: 5242537235159262642}
   - component: {fileID: 2710719404350869733}
   m_Layer: 5
-  m_Name: Menu
+  m_Name: Select
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
