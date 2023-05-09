@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 6986664464466477944}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6986664464301392420
 SpriteRenderer:
@@ -196,10 +196,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   runSpeed: 8
-  jumpSpd: 12
-  boing: {x: 0, y: 0}
+  jumpSpd: 6
+  boing: {x: 1, y: 0.5}
   projectile: {fileID: 5750715111447008314, guid: 23cbede1c6faf5f4382e7973f654488e, type: 3}
-  chargeProj: {fileID: 0}
+  chargeProj: {fileID: 5750715111447008314, guid: df08cd1fe2c32034cb3294f82cdecaec, type: 3}
   impact: {fileID: 6986664464466477944}
 --- !u!61 &6986664464301392446
 BoxCollider2D:

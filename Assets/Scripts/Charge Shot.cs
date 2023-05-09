@@ -20,16 +20,13 @@ public class ChargeShot : MonoBehaviour
     int pointsPerKill = 50;
 
     [SerializeField]
-    public float chargeTimer = 3f;
-
-    [SerializeField]
     float lifetime = 5f;
 
     GameSession session;
 
     Timer timer;
 
-    public float currentTime = 0f;
+    float currentTime = 0f;
 
     void Awake()
     {
@@ -47,16 +44,7 @@ public class ChargeShot : MonoBehaviour
     void Update()
     {
         bodied.velocity = new Vector2(xSpd, 0f);
-        UpdateTime();
         FlipSprite();
-    }
-
-    void UpdateTime()
-    {
-        while (currentTime < chargeTimer)
-        {
-            currentTime += Time.deltaTime / 3;
-        }
     }
 
     void Stars()
@@ -82,7 +70,11 @@ public class ChargeShot : MonoBehaviour
 
     void KillIt()
     {
-        if (timer.timerVal == lifetime)
+        if (currentTime < lifetime)
+        {
+            currentTime += Time.deltaTime;
+        }
+        else if (currentTime == lifetime)
         {
             Destroy (gameObject);
         }

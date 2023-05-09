@@ -12,7 +12,10 @@ public class PlayerMove : MonoBehaviour
     float jumpSpd = 12f;
 
     [SerializeField]
-    Vector2 boing = new Vector2(0f, 0f);
+    float chargeShotTime = 10f;
+
+    [SerializeField]
+    Vector2 boing = new Vector2(1f, 0.5f);
 
     [SerializeField]
     GameObject projectile;
@@ -33,6 +36,8 @@ public class PlayerMove : MonoBehaviour
 
     bool isLiving = true;
 
+    float curTime = 0f;
+
     BoxCollider2D feet;
 
     ChargeShot cShot;
@@ -50,6 +55,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (isLiving == true)
         {
+            Jumpy();
             Run();
             FlipSprite();
             Die();
@@ -76,11 +82,6 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        while (!feet.IsTouchingLayers(LayerMask.GetMask("Platforms")))
-        {
-            anim.SetBool("isJumping", true);
-        }
-
         if (
             value.isPressed &&
             feet.IsTouchingLayers(LayerMask.GetMask("Platforms"))
@@ -90,8 +91,25 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    public void Jumpy()
+    {
+        if (!feet.IsTouchingLayers(LayerMask.GetMask("Platforms")))
+        {
+            anim.SetBool("isJumping", true);
+        }
+        else if (feet.IsTouchingLayers(LayerMask.GetMask("Platforms")))
+        {
+            anim.SetBool("isJumping", false);
+        }
+    }
+
     public void OnFire(InputValue value)
     {
+        if (!isLiving)
+        {
+            return;
+        }
+
         if (value.isPressed)
         {
             Instantiate(projectile, impact.position, transform.rotation);
@@ -108,18 +126,23 @@ public class PlayerMove : MonoBehaviour
 
     void OnChargeFire(InputValue value)
     {
+        if (!isLiving)
+        {
+            return;
+        }
+
         if (value.isPressed)
         {
-            Instantiate(chargeProj, impact.position, transform.rotation);
-            anim.SetBool("isFiring", true);
-            cShot.currentTime = 0;
+            anim.SetBool("chargingFire", true);
         }
-        if (
-            anim.GetBool("isFiring") == true &&
-            anim.GetBool("isRunning") == true
-        )
+
+        if (anim.GetBool("chargingFire") == true && value.isPressed)
         {
-            anim.SetBool("isFiring", false);
+            anim.SetBool("chargingFire", false);
+            anim.SetBool("isFiring", true);
+            Instantiate(chargeProj, impact.position, transform.rotation);
+            bodied.velocity = boing;
+            curTime = 0;
         }
     }
 
@@ -153,7 +176,6 @@ public class PlayerMove : MonoBehaviour
             anim.SetBool("isFiring", false);
             anim.SetBool("isJumping", false);
             Object.Destroy (myCollider);
-            bodied.velocity = boing;
             FindObjectOfType<GameSession>().PlayDeaths();
         }
     }
