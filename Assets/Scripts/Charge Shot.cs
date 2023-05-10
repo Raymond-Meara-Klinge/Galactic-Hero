@@ -70,13 +70,13 @@ public class ChargeShot : MonoBehaviour
 
     void KillIt()
     {
-        if (currentTime < lifetime)
-        {
             currentTime += Time.deltaTime;
-        }
-        else if (currentTime == lifetime)
+
+
+        if (currentTime >= lifetime)
         {
-            Destroy (gameObject);
+            Destroy (Instantiate(gameObject, transform.position, Quaternion.identity), 5f);
+            currentTime = 0;
         }
     }
 

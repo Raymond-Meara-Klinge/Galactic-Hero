@@ -130,21 +130,45 @@ public class PlayerMove : MonoBehaviour
         {
             return;
         }
-
-        if (value.isPressed)
+        if (!anim.GetBool("chargingFire") && value.isPressed)
         {
-            anim.SetBool("chargingFire", true);
+            StartCoroutine(Timer(value.isPressed));
         }
-
-        if (anim.GetBool("chargingFire") == true && value.isPressed)
+        else
         {
             anim.SetBool("chargingFire", false);
             anim.SetBool("isFiring", true);
             Instantiate(chargeProj, impact.position, transform.rotation);
             bodied.velocity = boing;
-            curTime = 0;
         }
     }
+
+    IEnumerator Timer(bool holding)
+    {
+        curTime += Time.deltaTime;
+        bool counting = true;
+        anim.SetBool("chargingFire", true);
+        if (holding)
+        {
+            if (counting == true)
+            {
+                Debug.Log (curTime);
+            }
+            if (curTime >= chargeShotTime)
+            {
+                counting = false;
+            }
+        }
+        yield return new WaitForSecondsRealtime(chargeShotTime);
+    }
+
+    // IEnumerator ChargeTimer()
+    // {
+    //     bool counting = true;
+    //     if (counting)
+    //     {
+    //     }
+    // }
 
     void Run()
     {
