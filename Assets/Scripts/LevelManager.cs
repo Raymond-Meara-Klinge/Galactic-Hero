@@ -8,41 +8,57 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     float waitLoad = 1f;
 
-    public void Load1()
+    private List<int> sceneHistory = new List<int>();
+
+    void Start()
     {
-        LoadScene("Level 1");
-    }
-    public void Load2()
-    {
-        LoadScene("Level 2");
-    }
-    public void Load3()
-    {
-        LoadScene("Level 3");
+        DontDestroyOnLoad(this.gameObject);
+        sceneHistory.Add(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void Load1()
+    {
+        LoadScene(3);
+    }
+
+    public void Load2()
+    {
+        LoadScene(4);
+    }
+
+    // public void Load3()
+    // {
+    //     LoadScene("Level 3");
+    // }
     public void LoadMenu()
     {
-        LoadScene("Main Menu");
+        LoadScene(0);
     }
 
     public void LoadSelect()
     {
-        LoadScene("Select");
+        LoadScene(1);
     }
 
     public void LoadGO()
     {
-        StartCoroutine(WaitLoad("Game Over", waitLoad));
+        StartCoroutine(WaitLoad(2, waitLoad));
     }
 
     public void LoadVictory()
     {
-        LoadScene("Victory");
+        LoadScene(5);
     }
 
-    void LoadScene(string scene)
+    public void LoadPrev()
     {
+        Debug.Log(PlayerPrefs.GetInt("SavedScene"));
+        LoadScene(PlayerPrefs.GetInt("SavedScene"));
+    }
+
+    void LoadScene(int scene)
+    {
+        sceneHistory.Add (scene);
         SceneManager.LoadScene (scene);
     }
 
@@ -52,7 +68,7 @@ public class LevelManager : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator WaitLoad(string scene, float delay)
+    IEnumerator WaitLoad(int scene, float delay)
     {
         yield return new WaitForSeconds(delay);
         LoadScene (scene);

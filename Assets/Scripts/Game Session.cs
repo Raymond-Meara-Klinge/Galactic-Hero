@@ -42,8 +42,16 @@ public class GameSession : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs
+            .SetInt("SavedScene", SceneManager.GetActiveScene().buildIndex);
         living.text = lives.ToString("Lives  0");
         score.text = scored.ToString("Score  00000000");
+        starlings.text = starNum.ToString("Starlings Remaining  00");
+    }
+
+    void Update() 
+    {
+        GetStarNum();
         starlings.text = starNum.ToString("Starlings Remaining  00");
     }
 
@@ -53,12 +61,6 @@ public class GameSession : MonoBehaviour
         score.text = scored.ToString("Score  00000000");
     }
 
-    public void Stars()
-    {
-        GetStarNum();
-        starlings.text = starNum.ToString("Starlings Remaining  00");
-    }
-
     int GetStarNum()
     {
         return starNum;
@@ -66,11 +68,11 @@ public class GameSession : MonoBehaviour
 
     public void PlayDeaths()
     {
-        if (lives > 0)
+        if (lives > 1)
         {
             Kill();
         }
-        else if (lives <= 0)
+        else if (lives <= 1)
         {
             Restart();
         }
@@ -87,7 +89,7 @@ public class GameSession : MonoBehaviour
     void Restart()
     {
         FindObjectOfType<ScenePersist>().ResetPersist();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
         Destroy (gameObject);
     }
 }

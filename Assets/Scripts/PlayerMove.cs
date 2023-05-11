@@ -162,13 +162,6 @@ public class PlayerMove : MonoBehaviour
         yield return new WaitForSecondsRealtime(chargeShotTime);
     }
 
-    // IEnumerator ChargeTimer()
-    // {
-    //     bool counting = true;
-    //     if (counting)
-    //     {
-    //     }
-    // }
 
     void Run()
     {
@@ -191,7 +184,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (
             myCollider
-                .IsTouchingLayers(LayerMask.GetMask("Starlings", "Hazards"))
+                .IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards"))
         )
         {
             isLiving = false;
