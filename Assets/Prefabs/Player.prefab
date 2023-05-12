@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6986664464301392447}
   - component: {fileID: 6986664464301392446}
   - component: {fileID: 6986664464301392445}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0.375
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -197,7 +197,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 8
   jumpSpd: 6
-  boing: {x: 1, y: 0.5}
+  chargeShotTime: 3
+  boing: {x: 4, y: 2}
   projectile: {fileID: 5750715111447008314, guid: 23cbede1c6faf5f4382e7973f654488e, type: 3}
   chargeProj: {fileID: 5750715111447008314, guid: df08cd1fe2c32034cb3294f82cdecaec, type: 3}
   impact: {fileID: 6986664464466477944}
@@ -275,7 +276,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6986664464466477944}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Galacticannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

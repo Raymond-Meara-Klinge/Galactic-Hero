@@ -12,7 +12,7 @@ public class PlayerMove : MonoBehaviour
     float jumpSpd = 12f;
 
     [SerializeField]
-    float chargeShotTime = 10f;
+    float chargeShotTime = 3f;
 
     [SerializeField]
     Vector2 boing = new Vector2(1f, 0.5f);
@@ -41,6 +41,9 @@ public class PlayerMove : MonoBehaviour
     BoxCollider2D feet;
 
     ChargeShot cShot;
+
+    [SerializeField]
+    InputActionReference chargeShot;
 
     void Start()
     {
@@ -130,38 +133,34 @@ public class PlayerMove : MonoBehaviour
         {
             return;
         }
-        if (!anim.GetBool("chargingFire") && value.isPressed)
+        if (value.isPressed)
         {
-            StartCoroutine(Timer(value.isPressed));
-        }
-        else
-        {
-            anim.SetBool("chargingFire", false);
-            anim.SetBool("isFiring", true);
-            Instantiate(chargeProj, impact.position, transform.rotation);
-            bodied.velocity = boing;
+            chargeShot.action.performed += Charge;
         }
     }
 
-    IEnumerator Timer(bool holding)
+    private void Charge(InputAction.CallbackContext obj)
     {
-        curTime += Time.deltaTime;
-        bool counting = true;
         anim.SetBool("chargingFire", true);
-        if (holding)
-        {
-            if (counting == true)
+        bool counting = true;
+            if (counting)
             {
+                curTime += Time.deltaTime;
                 Debug.Log (curTime);
             }
             if (curTime >= chargeShotTime)
             {
                 counting = false;
             }
-        }
-        yield return new WaitForSecondsRealtime(chargeShotTime);
+            else if (!counting)
+            {
+                anim.SetBool("chargingFire", false);
+                anim.SetBool("isFiring", true);
+                Instantiate(chargeProj, impact.position, transform.rotation);
+                bodied.velocity = boing;
+            // chargeShot.action.performed -= Charge;
+            }
     }
-
 
     void Run()
     {
@@ -182,9 +181,7 @@ public class PlayerMove : MonoBehaviour
 
     void Die()
     {
-        if (
-            myCollider
-                .IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards"))
+        if (myCollider.IsTouchingLayers(LayerMask.GetMask("Enemies", "Hazards"))
         )
         {
             isLiving = false;
