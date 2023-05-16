@@ -1,13 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
 {
     [SerializeField]
     int lives = 3;
+
+    [SerializeField]
+    public float playHP = 75f;
 
     [SerializeField]
     int scored;
@@ -20,6 +25,11 @@ public class GameSession : MonoBehaviour
 
     [SerializeField]
     TextMeshProUGUI starlings;
+
+    [SerializeField]
+    Slider hpSlider;
+
+    PlayerMove playa;
 
     public int starNum;
 
@@ -47,11 +57,13 @@ public class GameSession : MonoBehaviour
         living.text = lives.ToString("Lives  0");
         score.text = scored.ToString("Score  00000000");
         starlings.text = starNum.ToString("Starlings Remaining  00");
+        hpSlider.maxValue = GetHP();
     }
 
-    void Update() 
+    void Update()
     {
         GetStarNum();
+        hpSlider.value = GetHP();
         starlings.text = starNum.ToString("Starlings Remaining  00");
     }
 
@@ -59,6 +71,11 @@ public class GameSession : MonoBehaviour
     {
         scored += addedPoints;
         score.text = scored.ToString("Score  00000000");
+    }
+
+    private float GetHP()
+    {
+        return playHP;
     }
 
     int GetStarNum()

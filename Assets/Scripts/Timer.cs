@@ -4,30 +4,40 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    float questionTime = 5f;
+    float chargeTime;
 
-    public float fillFrac;
+    float timerVal;
 
-    public float timerVal;
+    PlayerMove playa;
+
+    void Start()
+    {
+        playa = FindObjectOfType<PlayerMove>();
+        CancelTime();
+        chargeTime = playa.chargeShotTime;
+    }
 
     void Update()
     {
-        TimerUpdate();
+        Count();
+    }
+
+    public float Count()
+    {
+        if (timerVal < chargeTime)
+        {
+            timerVal += Time.deltaTime;
+            Debug.Log(timerVal);
+        }
+        else if (timerVal >= chargeTime)
+        {
+            timerVal = chargeTime;
+        }
+            return timerVal;
     }
 
     public void CancelTime()
     {
         timerVal = 0;
-    }
-
-    void TimerUpdate()
-    {
-        timerVal -= Time.time;
-
-            if (timerVal > 0)
-            {
-                fillFrac = timerVal / questionTime;
-            }
-            Debug.Log(timerVal);
     }
 }

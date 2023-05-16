@@ -12,7 +12,7 @@ public class PlayerMove : MonoBehaviour
     float jumpSpd = 12f;
 
     [SerializeField]
-    float chargeShotTime = 3f;
+    public float chargeShotTime = 3f;
 
     [SerializeField]
     Vector2 boing = new Vector2(1f, 0.5f);
@@ -36,17 +36,17 @@ public class PlayerMove : MonoBehaviour
 
     bool isLiving = true;
 
-    float curTime = 0f;
-
     BoxCollider2D feet;
 
     ChargeShot cShot;
 
-    [SerializeField]
-    InputActionReference chargeShot;
+    Timer timer;
+
+    float curTime;
 
     void Start()
     {
+        timer = FindObjectOfType<Timer>();
         cShot = FindObjectOfType<ChargeShot>();
         bodied = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -129,37 +129,34 @@ public class PlayerMove : MonoBehaviour
 
     void OnChargeFire(InputValue value)
     {
-        if (!isLiving)
+        if (!anim.GetBool("chargingFire") && value.isPressed)
         {
-            return;
+            StartCoroutine(Timer(value.isPressed));
         }
-        if (value.isPressed)
+        else
         {
-            chargeShot.action.performed += Charge;
+            StopCoroutine(Timer(value.isPressed));
+            anim.SetBool("chargingFire", false);
         }
     }
 
-    private void Charge(InputAction.CallbackContext obj)
+    IEnumerator Timer(bool holding)
     {
         anim.SetBool("chargingFire", true);
-        bool counting = true;
-            if (counting)
-            {
-                curTime += Time.deltaTime;
-                Debug.Log (curTime);
-            }
+        while (holding)
+        {
+            curTime = timer.Count();
             if (curTime >= chargeShotTime)
             {
-                counting = false;
-            }
-            else if (!counting)
-            {
+                curTime = 0;
                 anim.SetBool("chargingFire", false);
                 anim.SetBool("isFiring", true);
                 Instantiate(chargeProj, impact.position, transform.rotation);
                 bodied.velocity = boing;
-            // chargeShot.action.performed -= Charge;
+                yield return new WaitForSecondsRealtime(chargeShotTime);
+                break;
             }
+        }
     }
 
     void Run()

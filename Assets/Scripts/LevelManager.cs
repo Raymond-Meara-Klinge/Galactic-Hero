@@ -26,10 +26,10 @@ public class LevelManager : MonoBehaviour
         LoadScene(4);
     }
 
-    // public void Load3()
-    // {
-    //     LoadScene("Level 3");
-    // }
+    public void Load3()
+    {
+        LoadScene(5);
+    }
     public void LoadMenu()
     {
         LoadScene(0);
@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadVictory()
     {
-        LoadScene(5);
+        LoadScene(6);
     }
 
     public void LoadPrev()

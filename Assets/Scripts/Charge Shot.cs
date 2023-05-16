@@ -24,20 +24,23 @@ public class ChargeShot : MonoBehaviour
 
     GameSession session;
 
+    FinalBoss boss;
+
     Timer timer;
 
     float currentTime = 0f;
 
     void Awake()
     {
+        boss = FindObjectOfType<FinalBoss>();
         session = FindObjectOfType<GameSession>();
         timer = FindObjectOfType<Timer>();
+        playa = FindObjectOfType<PlayerMove>();
     }
 
     void Start()
     {
         bodied = GetComponent<Rigidbody2D>();
-        playa = FindObjectOfType<PlayerMove>();
         xSpd = playa.transform.localScale.x * fireSpd;
     }
 
@@ -62,20 +65,24 @@ public class ChargeShot : MonoBehaviour
             session.starNum--;
             killed++;
         }
+        else if (other.tag == "Boss")
+        {
+            boss.hitPoints -= 15;
+        }
         if (killed >= 3)
         {
             Destroy (gameObject);
         }
+        Destroy (gameObject);
     }
 
     void KillIt()
     {
-            currentTime += Time.deltaTime;
-
+        currentTime += Time.deltaTime;
 
         if (currentTime >= lifetime)
         {
-            Destroy (Instantiate(gameObject, transform.position, Quaternion.identity), 5f);
+            Destroy(gameObject, 5f);
             currentTime = 0;
         }
     }

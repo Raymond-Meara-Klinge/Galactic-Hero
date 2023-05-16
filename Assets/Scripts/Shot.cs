@@ -19,10 +19,16 @@ public class Shot : MonoBehaviour
     [SerializeField]
     int pointsPerKill = 50;
 
+    [SerializeField]
+    int pointsPerBossHit = 75;
+
     GameSession session;
+
+    FinalBoss boss;
 
     void Awake()
     {
+        boss = FindObjectOfType<FinalBoss>();
         session = FindObjectOfType<GameSession>();
     }
 
@@ -51,6 +57,11 @@ public class Shot : MonoBehaviour
             Destroy(other.gameObject);
             session.Scoring (pointsPerKill);
             session.starNum--;
+        }
+        else if (other.tag == "Boss")
+        {
+            boss.hitPoints -= 5;
+            session.Scoring (pointsPerBossHit);
         }
         Destroy (gameObject);
     }

@@ -8,6 +8,7 @@ TagManager:
   - Platforms
   - Starling
   - Shot
+  - Boss
   layers:
   - Default
   - TransparentFX
