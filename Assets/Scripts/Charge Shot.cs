@@ -68,6 +68,7 @@ public class ChargeShot : MonoBehaviour
         else if (other.tag == "Boss")
         {
             boss.hitPoints -= 15;
+            Destroy(gameObject);
         }
         if (killed >= 3)
         {

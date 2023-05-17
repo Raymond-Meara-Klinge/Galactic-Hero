@@ -10,26 +10,19 @@ public class LevelManager : MonoBehaviour
 
     private List<int> sceneHistory = new List<int>();
 
+    GameSession session;
+
     void Start()
     {
+        session = FindObjectOfType<GameSession>();
         DontDestroyOnLoad(this.gameObject);
         sceneHistory.Add(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void Load1()
-    {
-        LoadScene(3);
+    private void Update() {
+        UpdateScene();
     }
 
-    public void Load2()
-    {
-        LoadScene(4);
-    }
-
-    public void Load3()
-    {
-        LoadScene(5);
-    }
     public void LoadMenu()
     {
         LoadScene(0);
@@ -45,6 +38,27 @@ public class LevelManager : MonoBehaviour
         StartCoroutine(WaitLoad(2, waitLoad));
     }
 
+    public void LoadOV()
+    {
+        LoadScene(3);
+    }
+
+    public void Load1()
+    {
+        LoadScene(4);
+    }
+
+    public void Load2()
+    {
+        LoadScene(5);
+    }
+
+    public void Load3()
+    {
+        LoadScene(6);
+    }
+
+
     public void LoadVictory()
     {
         LoadScene(6);
@@ -54,6 +68,14 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log(PlayerPrefs.GetInt("SavedScene"));
         LoadScene(PlayerPrefs.GetInt("SavedScene"));
+    }
+
+    void UpdateScene()
+    {
+        if (session.starNum <= 0)
+        {
+            LoadScene(sceneHistory[0]);
+        }
     }
 
     void LoadScene(int scene)

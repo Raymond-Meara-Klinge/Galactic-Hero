@@ -308,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08dcf35d933c1a47a5eb621c3587a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerVal: 0
 --- !u!4 &174881527
 Transform:
   m_ObjectHideFlags: 0
@@ -860,7 +861,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781151728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.93, y: 1.92, z: -10}
+  m_LocalPosition: {x: -4.6, y: 3.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -972,7 +973,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 944143440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.93, y: 1.92, z: -10}
+  m_LocalPosition: {x: -4.6, y: 3.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58401,10 +58402,10 @@ GameObject:
   - component: {fileID: 1266925264}
   - component: {fileID: 1266925263}
   - component: {fileID: 1266925262}
-  - component: {fileID: 1266925265}
   - component: {fileID: 1266925266}
+  - component: {fileID: 1266925267}
   m_Layer: 7
-  m_Name: Galactic Hero FB SS(1)_0
+  m_Name: BBEG
   m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58534,7 +58535,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1266925265
+--- !u!114 &1266925266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266925261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23cde2a4582e8714ab195f72b3098585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitPoints: 100
+  pointsForKill: 1500
+  fireRate: 5
+  blackHoleRate: 30
+  timer: {fileID: 1694662481}
+  beam: {fileID: 5750715111447008314, guid: 1ae77143808478d44a7b1577ce39fd55, type: 3}
+  blackHole: {fileID: 5750715111447008314, guid: 9999a6a416bc716459fac807da810df5, type: 3}
+  summonPoint: {fileID: 674218995}
+  chargeShotTime: 3
+--- !u!95 &1266925267
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -58554,26 +58576,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &1266925266
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1266925261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23cde2a4582e8714ab195f72b3098585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitPoints: 100
-  pointsForKill: 1500
-  fireRate: 5
-  blackHoleRate: 30
-  beam: {fileID: 5750715111447008314, guid: 1ae77143808478d44a7b1577ce39fd55, type: 3}
-  blackHole: {fileID: 5750715111447008314, guid: 9999a6a416bc716459fac807da810df5, type: 3}
-  summonPoint: {fileID: 674218995}
-  chargeShotTime: 3
 --- !u!1 &1326053905
 GameObject:
   m_ObjectHideFlags: 0
@@ -59027,6 +59029,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615373053}
   m_CullTransparentMesh: 1
+--- !u!1 &1694662480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1694662482}
+  - component: {fileID: 1694662481}
+  m_Layer: 0
+  m_Name: FBTimer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1694662481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694662480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08dcf35d933c1a47a5eb621c3587a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerVal: 0
+--- !u!4 &1694662482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694662480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 190.56194, y: -31.615387, z: 6.7141156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2056144602
 GameObject:
   m_ObjectHideFlags: 0
@@ -59053,7 +59100,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056144602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.9300006, y: 1.92, z: -10}
+  m_LocalPosition: {x: -4.6000004, y: 3.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -59137,11 +59184,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6986664464301392443, guid: 09c393504fe22ad4f8b8d607551365c2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.93
+      value: -4.6
       objectReference: {fileID: 0}
     - target: {fileID: 6986664464301392443, guid: 09c393504fe22ad4f8b8d607551365c2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.92
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 6986664464301392443, guid: 09c393504fe22ad4f8b8d607551365c2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -59175,6 +59222,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6986664464301392447, guid: 09c393504fe22ad4f8b8d607551365c2, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 174881526}
     - target: {fileID: 6986664464301392447, guid: 09c393504fe22ad4f8b8d607551365c2, type: 3}
       propertyPath: jumpSpd
       value: 6

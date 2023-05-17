@@ -6,7 +6,7 @@ public class Timer : MonoBehaviour
 {
     float chargeTime;
 
-    float timerVal;
+    public float timerVal;
 
     PlayerMove playa;
 
@@ -19,7 +19,10 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        Count();
+        if (playa.charging == true)
+        {
+            Count();
+        }
     }
 
     public float Count()
@@ -27,13 +30,13 @@ public class Timer : MonoBehaviour
         if (timerVal < chargeTime)
         {
             timerVal += Time.deltaTime;
-            Debug.Log(timerVal);
+            Debug.Log (timerVal);
         }
         else if (timerVal >= chargeTime)
         {
             timerVal = chargeTime;
         }
-            return timerVal;
+        return timerVal;
     }
 
     public void CancelTime()

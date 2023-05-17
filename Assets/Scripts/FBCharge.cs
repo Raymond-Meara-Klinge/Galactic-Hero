@@ -22,6 +22,8 @@ public class FBCharge : MonoBehaviour
 
     float currentTime = 0f;
 
+    Vector2 fireDirect;
+
     void Awake()
     {
         session = FindObjectOfType<GameSession>();
@@ -33,11 +35,13 @@ public class FBCharge : MonoBehaviour
         bodied = GetComponent<Rigidbody2D>();
         target = FindObjectOfType<PlayerMove>();
         xSpd = target.transform.localScale.x * fireSpd;
-    }
-
-    void Update()
-    {
-        bodied.velocity = new Vector2(xSpd, 0f);
+        bodied = GetComponent<Rigidbody2D>();
+        target = FindObjectOfType<PlayerMove>();
+        fireDirect =
+            (target.transform.position - transform.position).normalized *
+            fireSpd;
+        bodied.velocity = new Vector2(fireDirect.x, fireDirect.y);
+        Destroy(gameObject, 3f);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -47,20 +51,6 @@ public class FBCharge : MonoBehaviour
             session.playHP -= 15;
         }
         Destroy (gameObject);
-    }
-
-    void KillIt()
-    {
-        currentTime += Time.deltaTime;
-
-        if (currentTime >= lifetime)
-        {
-            Destroy(Instantiate(gameObject,
-            transform.position,
-            Quaternion.identity),
-            5f);
-            currentTime = 0;
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)

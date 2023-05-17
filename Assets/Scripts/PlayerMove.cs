@@ -15,13 +15,13 @@ public class PlayerMove : MonoBehaviour
     public float chargeShotTime = 3f;
 
     [SerializeField]
-    Vector2 boing = new Vector2(1f, 0.5f);
-
-    [SerializeField]
     GameObject projectile;
 
     [SerializeField]
     GameObject chargeProj;
+
+    [SerializeField]
+    Timer timer;
 
     [SerializeField]
     Transform impact;
@@ -40,9 +40,9 @@ public class PlayerMove : MonoBehaviour
 
     ChargeShot cShot;
 
-    Timer timer;
-
     float curTime;
+
+    public bool charging = false;
 
     void Start()
     {
@@ -132,6 +132,10 @@ public class PlayerMove : MonoBehaviour
         if (!anim.GetBool("chargingFire") && value.isPressed)
         {
             StartCoroutine(Timer(value.isPressed));
+            if (curTime != chargeShotTime)
+            {
+                return;
+            }
         }
         else
         {
@@ -143,20 +147,22 @@ public class PlayerMove : MonoBehaviour
     IEnumerator Timer(bool holding)
     {
         anim.SetBool("chargingFire", true);
+        charging = true;
         while (holding)
         {
             curTime = timer.Count();
             if (curTime >= chargeShotTime)
             {
-                curTime = 0;
                 anim.SetBool("chargingFire", false);
-                anim.SetBool("isFiring", true);
                 Instantiate(chargeProj, impact.position, transform.rotation);
-                bodied.velocity = boing;
-                yield return new WaitForSecondsRealtime(chargeShotTime);
+                anim.SetBool("isFiring", true);
+                charging = false;
+                curTime = 0;
+                timer.timerVal = 0;
                 break;
             }
         }
+        yield return new WaitForSecondsRealtime(chargeShotTime);
     }
 
     void Run()

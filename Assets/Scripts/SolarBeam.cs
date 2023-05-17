@@ -5,7 +5,7 @@ using UnityEngine;
 public class SolarBeam : MonoBehaviour
 {
     [SerializeField]
-    float fireSpd = 5f;
+    float fireSpd = 7f;
 
     Rigidbody2D bodied;
 
