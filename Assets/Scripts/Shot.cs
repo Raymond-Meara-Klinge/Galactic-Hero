@@ -56,7 +56,7 @@ public class Shot : MonoBehaviour
         {
             Destroy(other.gameObject);
             session.Scoring (pointsPerKill);
-            session.starNum--;
+            UpdateStarNum();
         }
         else if (other.tag == "Boss")
         {
@@ -64,6 +64,11 @@ public class Shot : MonoBehaviour
             session.Scoring (pointsPerBossHit);
         }
         Destroy (gameObject);
+    }
+
+    public void UpdateStarNum()
+    {
+        session.starNum--;
     }
 
     void OnCollisionEnter2D(Collision2D other)

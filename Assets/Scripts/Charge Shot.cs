@@ -62,13 +62,13 @@ public class ChargeShot : MonoBehaviour
         {
             Destroy(other.gameObject);
             session.Scoring (pointsPerKill);
-            session.starNum--;
+            UpdateStarNum();
             killed++;
         }
         else if (other.tag == "Boss")
         {
             boss.hitPoints -= 15;
-            Destroy(gameObject);
+            Destroy (gameObject);
         }
         if (killed >= 3)
         {
@@ -77,15 +77,14 @@ public class ChargeShot : MonoBehaviour
         Destroy (gameObject);
     }
 
+    public void UpdateStarNum()
+    {
+        session.starNum--;
+    }
+
     void KillIt()
     {
-        currentTime += Time.deltaTime;
-
-        if (currentTime >= lifetime)
-        {
-            Destroy(gameObject, 5f);
-            currentTime = 0;
-        }
+        Destroy(gameObject, lifetime);
     }
 
     void FlipSprite()

@@ -41,7 +41,7 @@ public class FBCharge : MonoBehaviour
             (target.transform.position - transform.position).normalized *
             fireSpd;
         bodied.velocity = new Vector2(fireDirect.x, fireDirect.y);
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 5f);
     }
 
     void OnTriggerEnter2D(Collider2D other)

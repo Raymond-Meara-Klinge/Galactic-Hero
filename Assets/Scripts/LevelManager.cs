@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
 
     GameSession session;
 
+    int sceneNum;
+
     void Start()
     {
         session = FindObjectOfType<GameSession>();
@@ -20,7 +22,8 @@ public class LevelManager : MonoBehaviour
     }
 
     private void Update() {
-        UpdateScene();
+        sceneNum = GetScene();
+        UpdateScene(sceneNum);
     }
 
     public void LoadMenu()
@@ -61,7 +64,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadVictory()
     {
-        LoadScene(6);
+        LoadScene(7);
     }
 
     public void LoadPrev()
@@ -70,11 +73,15 @@ public class LevelManager : MonoBehaviour
         LoadScene(PlayerPrefs.GetInt("SavedScene"));
     }
 
-    void UpdateScene()
+    void UpdateScene(int scene)
     {
-        if (session.starNum <= 0)
+        if (scene >= 4 && scene < 6 && session.starNum <= 0)
         {
             LoadScene(sceneHistory[0]);
+        }
+        else 
+        {
+            return;
         }
     }
 
@@ -82,6 +89,11 @@ public class LevelManager : MonoBehaviour
     {
         sceneHistory.Add (scene);
         SceneManager.LoadScene (scene);
+    }
+
+    int GetScene()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
     }
 
     public void Quit()

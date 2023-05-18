@@ -9,6 +9,7 @@ TagManager:
   - Starling
   - Shot
   - Boss
+  - Enem Shot
   layers:
   - Default
   - TransparentFX

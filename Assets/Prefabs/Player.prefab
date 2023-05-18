@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 6986664464466477944}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6986664464301392420
 SpriteRenderer:
@@ -180,8 +180,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.031368524, y: 0.014861047}
-  m_Size: {x: 0.6170872, y: 0.9588963}
+  m_Offset: {x: -0.07572484, y: 0.014861047}
+  m_Size: {x: 0.8240833, y: 0.9588963}
   m_Direction: 0
 --- !u!114 &6986664464301392447
 MonoBehaviour:
@@ -198,10 +198,11 @@ MonoBehaviour:
   runSpeed: 8
   jumpSpd: 6
   chargeShotTime: 3
-  boing: {x: 4, y: 2}
   projectile: {fileID: 5750715111447008314, guid: 23cbede1c6faf5f4382e7973f654488e, type: 3}
   chargeProj: {fileID: 5750715111447008314, guid: df08cd1fe2c32034cb3294f82cdecaec, type: 3}
+  timer: {fileID: 0}
   impact: {fileID: 6986664464466477944}
+  charging: 0
 --- !u!61 &6986664464301392446
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -234,7 +235,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.075374186, y: -0.44785255}
+  m_Offset: {x: -0.07403007, y: -0.44785255}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -245,7 +246,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.82463944, y: 0.10047591}
+  m_Size: {x: 0.76280934, y: 0.10047591}
   m_EdgeRadius: 0
 --- !u!95 &6986664464301392445
 Animator:

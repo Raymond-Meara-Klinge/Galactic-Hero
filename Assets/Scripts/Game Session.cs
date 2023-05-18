@@ -80,6 +80,7 @@ public class GameSession : MonoBehaviour
 
     int GetStarNum()
     {
+        shot.UpdateStarNum();
         return starNum;
     }
 

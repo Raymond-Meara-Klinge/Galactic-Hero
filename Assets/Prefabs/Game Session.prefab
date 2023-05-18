@@ -236,8 +236,8 @@ RectTransform:
   m_Children:
   - {fileID: 2097341955}
   - {fileID: 82945046}
-  - {fileID: 8662586468047381592}
   - {fileID: 8472708456034390977}
+  - {fileID: 8662586468047381592}
   m_Father: {fileID: 8043941386165848273}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -745,7 +745,7 @@ Transform:
   - {fileID: 438147743}
   - {fileID: 373744932}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8043941386165848272
 MonoBehaviour:
@@ -760,10 +760,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 3
+  playHP: 75
   scored: 0
   living: {fileID: 2097341957}
   score: {fileID: 82945044}
   starlings: {fileID: 3388511677500709264}
+  hpSlider: {fileID: 0}
   starNum: 0
 --- !u!1 &8378004045756484197
 GameObject:

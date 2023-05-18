@@ -11,13 +11,16 @@ public class FinalBoss : MonoBehaviour
     int pointsForKill = 1500;
 
     [SerializeField]
-    float fireRate = 5f;
+    public float fireRate = 5f;
 
     [SerializeField]
-    float blackHoleRate = 30f;
+    public float blackHoleRate = 30f;
 
     [SerializeField]
     Timer timer;
+
+    [SerializeField]
+    Timer shotTimer;
 
     [SerializeField]
     GameObject beam;
@@ -28,10 +31,11 @@ public class FinalBoss : MonoBehaviour
     [SerializeField]
     Transform summonPoint;
 
-    [SerializeField]
-    public float chargeShotTime = 3f;
-
     float nextFire;
+
+    float nextHole;
+
+    bool isLiving = true;
 
     Animator anim;
 
@@ -59,23 +63,26 @@ public class FinalBoss : MonoBehaviour
 
     void Update()
     {
-        FireBeam();
-        Die();
+        if (isLiving)
+{        FireBeam();
+}        Die();
     }
 
     void FireBeam()
     {
-        nextFire = Time.time;
-        if (Time.time > nextFire)
+        nextFire = shotTimer.BossShotCount();
+        nextHole = timer.BossHoleCount();
+
+        if (nextFire >= fireRate)
         {
             Instantiate(beam, summonPoint.position, transform.rotation);
-            nextFire = Time.time + fireRate;
+            nextFire = 0;
         }
-        else if (Time.time > chargeShotTime)
+
+        if (nextHole > blackHoleRate)
         {
             Instantiate(blackHole, summonPoint.position, transform.rotation);
-            nextFire = Time.time + fireRate;
-            ResetTimer();
+            nextHole = 0;
         }
     }
 
@@ -90,12 +97,8 @@ public class FinalBoss : MonoBehaviour
     IEnumerator Death()
     {
         anim.SetBool("Dying", true);
+        isLiving = false;
         yield return new WaitForSecondsRealtime(3);
         Destroy (gameObject);
-    }
-
-    void ResetTimer()
-    {
-        nextFire = 0f;
     }
 }

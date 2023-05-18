@@ -31,7 +31,6 @@ public class SolarBeam : MonoBehaviour
             (target.transform.position - transform.position).normalized *
             fireSpd;
         bodied.velocity = new Vector2(fireDirect.x, fireDirect.y);
-        Destroy(gameObject, 3f);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -39,6 +38,10 @@ public class SolarBeam : MonoBehaviour
         if (other.tag == "Player")
         {
             session.playHP -= 5f;
+        }
+        else
+        {
+            return;
         }
         Destroy (gameObject);
     }

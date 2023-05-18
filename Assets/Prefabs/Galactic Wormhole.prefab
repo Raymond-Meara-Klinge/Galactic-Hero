@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4786380299095119110}
   - component: {fileID: 6785691572621556842}
   - component: {fileID: 6498633563230318765}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Stars
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4840,7 +4840,7 @@ GameObject:
   - component: {fileID: 1778434655699381019}
   - component: {fileID: 6679815820183001912}
   - component: {fileID: 4840896620115587974}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Galactic Wormhole
   m_TagString: Shot
   m_Icon: {fileID: 0}
@@ -4952,7 +4952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4550729411156627569}
   - component: {fileID: 2077229014724642792}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Galactic Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

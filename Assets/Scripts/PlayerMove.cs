@@ -80,7 +80,7 @@ public class PlayerMove : MonoBehaviour
 
     void OnJump(InputValue value)
     {
-        if (!isLiving)
+        if (!isLiving || !feet.IsTouchingLayers(LayerMask.GetMask("Platforms")))
         {
             return;
         }
