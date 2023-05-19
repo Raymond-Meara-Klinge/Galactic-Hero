@@ -4,9 +4,26 @@ using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour
 {
+    [SerializeField]
+    AudioClip chargeSFX;
+
+    [SerializeField]
+    AudioClip shotSFX;
+
     void Awake()
     {
         ManageSingle();
+    }
+
+    public void PlayChargeClip()
+    {
+        AudioSource
+            .PlayClipAtPoint(chargeSFX, Camera.main.transform.position, 1);
+    }
+
+    public void PlayShotClip()
+    {
+        AudioSource.PlayClipAtPoint(shotSFX, Camera.main.transform.position, 1);
     }
 
     void ManageSingle()
@@ -15,11 +32,11 @@ public class AudioPlayer : MonoBehaviour
         if (instanceCount > 1)
         {
             gameObject.SetActive(false);
-            Destroy(gameObject);
+            Destroy (gameObject);
         }
-        else 
+        else
         {
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad (gameObject);
         }
     }
 }

@@ -84,7 +84,7 @@ public class ChargeShot : MonoBehaviour
 
     void KillIt()
     {
-        Destroy(gameObject, lifetime);
+        Destroy (gameObject, lifetime);
     }
 
     void FlipSprite()

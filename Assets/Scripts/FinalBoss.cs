@@ -47,6 +47,8 @@ public class FinalBoss : MonoBehaviour
 
     GameSession session;
 
+    LevelManager lvlMan;
+
     float curTime;
 
     bool charging;
@@ -58,14 +60,17 @@ public class FinalBoss : MonoBehaviour
         session = FindObjectOfType<GameSession>();
         hole = FindObjectOfType<FBCharge>();
         solar = FindObjectOfType<SolarBeam>();
+        lvlMan = FindObjectOfType<LevelManager>();
         nextFire = Time.time;
     }
 
     void Update()
     {
         if (isLiving)
-{        FireBeam();
-}        Die();
+        {
+            FireBeam();
+        }
+        Die();
     }
 
     void FireBeam()
@@ -91,6 +96,7 @@ public class FinalBoss : MonoBehaviour
         if (hitPoints <= 0)
         {
             StartCoroutine(Death());
+            StartCoroutine(LoadVictory());
         }
     }
 
@@ -100,5 +106,11 @@ public class FinalBoss : MonoBehaviour
         isLiving = false;
         yield return new WaitForSecondsRealtime(3);
         Destroy (gameObject);
+    }
+
+    IEnumerator LoadVictory()
+    {
+        yield return new WaitForSecondsRealtime(7.5f);
+        lvlMan.LoadVictory();
     }
 }

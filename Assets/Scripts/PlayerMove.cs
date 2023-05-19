@@ -26,6 +26,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField]
     Transform impact;
 
+    AudioPlayer play;
+
     Vector2 moveInput;
 
     Rigidbody2D bodied;
@@ -44,10 +46,15 @@ public class PlayerMove : MonoBehaviour
 
     public bool charging = false;
 
-    void Start()
+    void Awake() 
     {
         timer = FindObjectOfType<Timer>();
         cShot = FindObjectOfType<ChargeShot>();
+        play = FindObjectOfType<AudioPlayer>();
+    }
+
+    void Start()
+    {
         bodied = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         myCollider = GetComponent<CapsuleCollider2D>();

@@ -31,15 +31,18 @@ public class GameSession : MonoBehaviour
 
     PlayerMove playa;
 
+    LevelManager lvlMan;
+
     public int starNum;
 
     Shot shot;
 
     void Awake()
     {
-        starNum = GameObject.FindGameObjectsWithTag("Starling").Length;
-        shot = FindObjectOfType<Shot>();
+        starNum = GameObject.FindGameObjectsWithTag("Starling").Length + GameObject.FindGameObjectsWithTag("Boss").Length;
+        shot = GetComponent<Shot>();
         int numSesh = FindObjectsOfType<GameSession>().Length;
+        lvlMan = FindObjectOfType<LevelManager>();
         if (numSesh > 1)
         {
             Destroy (gameObject);
@@ -57,14 +60,20 @@ public class GameSession : MonoBehaviour
         living.text = lives.ToString("Lives  0");
         score.text = scored.ToString("Score  00000000");
         starlings.text = starNum.ToString("Starlings Remaining  00");
-        hpSlider.maxValue = GetHP();
+        if (lvlMan.sceneNum == 6)
+        {
+            hpSlider.maxValue = GetHP();
+        }
     }
 
     void Update()
     {
         GetStarNum();
-        hpSlider.value = GetHP();
         starlings.text = starNum.ToString("Starlings Remaining  00");
+        if (lvlMan.sceneNum == 6)
+        {
+            hpSlider.value = GetHP();
+        }
     }
 
     public void Scoring(int addedPoints)
@@ -80,7 +89,6 @@ public class GameSession : MonoBehaviour
 
     int GetStarNum()
     {
-        shot.UpdateStarNum();
         return starNum;
     }
 

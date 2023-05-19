@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
 
     GameSession session;
 
-    int sceneNum;
+    public int sceneNum;
 
     void Start()
     {
@@ -23,7 +23,6 @@ public class LevelManager : MonoBehaviour
 
     private void Update() {
         sceneNum = GetScene();
-        UpdateScene(sceneNum);
     }
 
     public void LoadMenu()
@@ -73,16 +72,9 @@ public class LevelManager : MonoBehaviour
         LoadScene(PlayerPrefs.GetInt("SavedScene"));
     }
 
-    void UpdateScene(int scene)
+    public void LoadNext()
     {
-        if (scene >= 4 && scene < 6 && session.starNum <= 0)
-        {
-            LoadScene(sceneHistory[0]);
-        }
-        else 
-        {
-            return;
-        }
+        LoadScene(sceneNum++);
     }
 
     void LoadScene(int scene)
